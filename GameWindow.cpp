@@ -280,12 +280,6 @@ void GameWindow::OnClick(int mx, int my, MOUSE_BUTTONS_STATE mbs) {
     
     float xOffsetDiff = 0.0f;
 
-    /*if (moonsweeper->game.difficulty == Game::DIFFICULTY::BEGINNER 
-        || moonsweeper->game.difficulty == Game::DIFFICULTY::INTERMEDIATE) {
-        xOffsetDiff = 15 - (float) moonsweeper->game.width / 2.0f;
-        xOffsetDiff *= moonsweeper->game.tileSize;
-    }*/
-
     int tileX = (mx - xOffsetDiff - moonsweeper->game.tileSize) / moonsweeper->game.tileSize;   // offset for border
     int tileY = my / moonsweeper->game.tileSize;
     if (tileY >= moonsweeper->game.height || tileX >= moonsweeper->game.width) {
@@ -403,11 +397,6 @@ void GameWindow::OnPaint() {
         renderTarget->BeginDraw();
         renderTarget->Clear(moonsweeper->colorGrid);
         float xOffsetDiff = 0.0f;
-
-        /*if (moonsweeper->game.difficulty == Game::DIFFICULTY::BEGINNER 
-            || moonsweeper->game.difficulty == Game::DIFFICULTY::INTERMEDIATE) {
-            xOffsetDiff = 15.0f - (float)moonsweeper->game.width / 2.0f;
-        }*/
 
         D2D1_RECT_F rect = D2D1::RectF(0.0f, 0.0f, 0.0f, 0.0f);
         const int xEnd = moonsweeper->game.board.size() + moonsweeper->vBorderCount;
@@ -553,16 +542,7 @@ void GameWindow::OnPaint() {
 
 void GameWindow::OnHold(int mouseX, int mouseY, bool resetPrev) {
 
-    static int prevTileX = 0;
-    static int prevTileY = 0;
-
     float xOffsetDiff = 0.0f;
-
-    /*if (moonsweeper->game.difficulty == Game::DIFFICULTY::BEGINNER
-        || moonsweeper->game.difficulty == Game::DIFFICULTY::INTERMEDIATE) {
-        xOffsetDiff = 150.f - (float)moonsweeper->game.width / 2.0f;
-        xOffsetDiff *= moonsweeper->game.tileSize;
-    }*/
 
     int tileX = (mouseX - xOffsetDiff - moonsweeper->game.tileSize) / moonsweeper->game.tileSize;   // offset for border
     int tileY = mouseY / moonsweeper->game.tileSize;

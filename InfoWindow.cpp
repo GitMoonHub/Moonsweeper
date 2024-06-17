@@ -393,9 +393,6 @@ void InfoWindow::OnPaint() {
 
 
         // Timer scoreboard
-        //      (Flags Left)                                                    (Timer)
-        // [firstNumX] [secondNumX] [thirdNumX]     [smiley]    [w - thirdNumX - 1] [w - secondNumX - 1] [w - firstNumX - 1]
-   
         // First number
         rect.left = (moonsweeper->game.difficulty == Game::DIFFICULTY::BEGINNER ? (moonsweeper->tileWCount - thirdNumX) * moonsweeper->game.tileSize : (moonsweeper->tileWCount - thirdNumX - 1) * moonsweeper->game.tileSize);
         rect.right = rect.left + moonsweeper->game.tileSize;

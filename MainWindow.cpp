@@ -51,16 +51,6 @@ LRESULT MainWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) {
             hr = CreateGraphicsResources();
             std::cout << "[MainWindow]: Successfully created the window.\n";
             Win32_Helper::DPIScale::Initialize(this->Window());
-           /* hrsrc = FindResource(GetModuleHandle(NULL), MAKEINTRESOURCE(IDD_OPTIONS), MAKEINTRESOURCE(IDD_OPTIONS));
-            if (hrsrc == NULL) {
-                std::cout << "Couldn't find IDD_OPTIONS resource.\n";
-                exit(-1);
-            }*/
-
-            //LoadResource(GetModuleHandle(NULL), hrsrc);
-            //LockResource()
-            
-
             return 0;
 
         case WM_DESTROY:
@@ -143,13 +133,11 @@ INT_PTR CALLBACK MainWindow::OptionsMessage(HWND hwnd, UINT uMsg, WPARAM wParam,
         Edit_LimitText(main->hEditWidth, CUSTOM_SIZE_LIMIT);
         Edit_LimitText(main->hEditHeight, CUSTOM_SIZE_LIMIT);
         
-        
         // Add the combobox items
         ComboBox_AddString(main->hComboBoxDiff, L"Beginner");
         ComboBox_AddString(main->hComboBoxDiff, L"Intermediate");
         ComboBox_AddString(main->hComboBoxDiff, L"Expert");
         ComboBox_AddString(main->hComboBoxDiff, L"Custom");
-        //DialogInit
 
         switch (ms->game.difficulty) {
             case Game::DIFFICULTY::BEGINNER:
@@ -247,10 +235,10 @@ INT_PTR CALLBACK MainWindow::OptionsMessage(HWND hwnd, UINT uMsg, WPARAM wParam,
                         }
                         // Check if we changed the difficulty, if so, generate a new game
                         if (static_cast<Game::DIFFICULTY>(value) != difficulty) {
+                            ms->gameWindow.prevTileX = 0;
+                            ms->gameWindow.prevTileY = 0;
                             ms->game.NewGame();
                             ms->CalculateLayout();
-                            //difficulty = ms->game.difficulty;
-                            //SendMessage(ms->gameWindow.Window(), WM_PAINT, NULL, NULL);
                         }
                         SendMessage(ms->gameWindow.Window(), WM_PAINT, NULL, NULL);
                     }

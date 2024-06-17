@@ -112,9 +112,7 @@ HRESULT SmileyWindow::CreateGraphicsResources() {
 void SmileyWindow::DiscardGraphicsResources() {
     using namespace Win32_Helper;
 
-    //SafeRelease(&factory);
     SafeRelease(&renderTarget);
-    //SafeRelease(&iwicFactory);
     SafeRelease(&smileyBitmap);
     SafeRelease(&coolBitmap);
     SafeRelease(&shockedBitmap);

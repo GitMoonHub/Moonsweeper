@@ -1,33 +1,7 @@
 #include "Moonsweeper.h"
 
-Moonsweeper::Moonsweeper(u_int width, u_int height) {
-	/*mainWindow = MainWindow(L"Moonsweeper", width, height);
-	CREATEWNDSTRUCT cws;
-	cws.dwStyle = WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN;
-	cws.nWidth = CW_USEDEFAULT;
-	cws.nHeight = CW_USEDEFAULT;
-	cws.x = CW_USEDEFAULT;
-	cws.y = CW_USEDEFAULT;
-    if (!mainWindow.Create(cws)) {
-        std::cout << "Couldn't create the MainWindow\n.";
-        exit(-1);
-    }
-    ShowWindow(mainWindow.Window(), 1);
-
-
-	cws = CREATEWNDSTRUCT();
-	cws.dwExStyle = 0;
-    cws.dwStyle = WS_CHILD | WS_CLIPSIBLINGS;
-    cws.x = CW_USEDEFAULT;
-    cws.y = CW_USEDEFAULT;
-    cws.nWidth = CW_USEDEFAULT;
-    cws.nHeight = CW_USEDEFAULT;
-	gameWindow = GameWindow(mainWindow.Window(), &mainWindow);
-    gameWindow.Show();
-	game = Game();*/
-}
-
 Moonsweeper::Moonsweeper(u_int width, u_int height, int nCmdShow) {
+
     mainWindow = MainWindow(L"Moonsweeper", width, height, this);
     CREATEWNDSTRUCT cws;
     cws.dwStyle = WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN;
@@ -42,8 +16,6 @@ Moonsweeper::Moonsweeper(u_int width, u_int height, int nCmdShow) {
     ShowWindow(mainWindow.Window(), nCmdShow);
 
     game = Game(Game::DIFFICULTY::EXPERT, 30, 16, 99, NULL);
-    //game = Game(Game::DIFFICULTY::CUSTOM, 30, 16, 1, 1501802516);
-    //game.seed = /*1501802516*/;
 
     float tileHCount = game.height + infoWindow.heightTiles + hBorderCount;
     float tileWCount = game.width + vBorderCount;
@@ -52,6 +24,7 @@ Moonsweeper::Moonsweeper(u_int width, u_int height, int nCmdShow) {
 
     game.tileSize = tileHSize > tileWSize ? tileWSize : tileHSize;
 
+    // GameWindow
     cws = CREATEWNDSTRUCT();
     cws.dwExStyle = 0;
     cws.dwStyle = WS_CHILD | WS_CLIPSIBLINGS;
@@ -72,11 +45,9 @@ Moonsweeper::Moonsweeper(u_int width, u_int height, int nCmdShow) {
         std::cout << "[Moonsweeper]: Couldn't create gameWindow.\n";
         exit(-1);
     }
-    //ShowWindow(gameWindow.Window(), 1);
     gameWindow.Show();
-    //mainWindow.SetChildPointers(gameWindow.Window());
+    
     // InfoWindow
-
     cws = CREATEWNDSTRUCT();
     cws.dwExStyle = 0;
     cws.dwStyle = WS_CHILD | WS_CLIPSIBLINGS;

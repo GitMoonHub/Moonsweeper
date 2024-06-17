@@ -45,6 +45,8 @@ public:
     float height;
     float x;
     float y;
+    int prevTileX = 0;
+    int prevTileY = 0;
 private:
     HWND parentHwnd;
     Moonsweeper* moonsweeper = nullptr;
